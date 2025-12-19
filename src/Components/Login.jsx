@@ -1,7 +1,17 @@
+import { useRef, useState } from "react";
 import Header from "./Header";
-
+import Validation from "../Utils/Validation";
 
 const Login = () => {
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const [error, setError] = useState(null);
+
+  const handlesigninbutton = () =>{
+    const message = Validation(email.current.value,password.current.value);
+    setError(message);
+  }
   return (
     <div className="relative min-h-screen">
   <img 
@@ -18,23 +28,29 @@ const Login = () => {
 
 
   <div className="absolute inset-0 flex justify-center items-center z-10">
-    <div className="bg-black bg-opacity-80 p-10 rounded-md w-full max-w-md">
+    <div className="bg-opacity-200 p-10 rounded-md w-full max-w-md">
       <h2 className="text-3xl font-bold mb-6 text-white">Sign In</h2>
       
-      <form className="flex flex-col space-y-4">
+      <form onSubmit = {(e) => e.preventDefault()} className="flex flex-col space-y-4">
         <input 
+          ref = {email}
           type="email" 
           placeholder="Email or phone number" 
           className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600" 
         />
         <input 
+          ref = {password}
           type="password" 
           placeholder="Password" 
           className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600" 
         />
         
+        <p className="text-red-500">{error}</p>
+
         <button 
-          className="bg-red-600 hover:bg-red-700 transition text-white font-semibold py-3 rounded">
+          className="bg-red-600 hover:bg-red-700 transition text-white font-semibold py-3 rounded"
+          onClick={handlesigninbutton}
+          >
           Sign In
         </button>
         
