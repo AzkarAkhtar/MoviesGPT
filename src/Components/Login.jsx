@@ -6,11 +6,12 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);  
   const [error, setError] = useState(null);
   const [isSignIn, setIsSignIn] = useState(true);
 
   const handlesigninbutton = () =>{
-    const message = Validation(email.current.value,password.current.value);
+    const message = Validation(email.current.value,password.current.value, isSignIn ? "ValidName" : name.current?.value);
     setError(message);
   }
   
@@ -39,7 +40,8 @@ const Login = () => {
       
       <form onSubmit = {(e) => e.preventDefault()} className="flex flex-col space-y-4">
         {!isSignIn && (
-          <input 
+          <input
+            ref = {name}
             type="text" 
             placeholder="Full Name" 
             className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600" 
@@ -61,7 +63,7 @@ const Login = () => {
         <p className="text-red-500">{error}</p>
 
         <button 
-          className="bg-red-600 hover:bg-red-700 transition text-white font-semibold py-3 rounded"
+          className="bg-red-600 hover:bg-green-700 transition text-white font-semibold py-3 rounded cursor-pointer"
           onClick={handlesigninbutton}
           >
           {isSignIn ? "Sign In" : "Sign Up"}
@@ -77,7 +79,7 @@ const Login = () => {
       </form>
 
       <div className="mt-6 text-gray-400 text-sm">
-        <p className ="text-white hover:underline" onClick = {handleSignUp}>{isSignIn ? "New to MoviesGPT? Sign up now" : "Already have an account? Sign in now"}</p>
+        <p className ="text-white hover:underline cursor-pointer" onClick = {handleSignUp}>{isSignIn ? "New to MoviesGPT? Sign up now" : "Already have an account? Sign in now"}</p>
       </div>
     </div>
   </div>
