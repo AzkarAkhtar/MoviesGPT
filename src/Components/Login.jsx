@@ -7,11 +7,17 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
   const [error, setError] = useState(null);
+  const [isSignIn, setIsSignIn] = useState(true);
 
   const handlesigninbutton = () =>{
     const message = Validation(email.current.value,password.current.value);
     setError(message);
   }
+  
+  const handleSignUp = () => {
+    setIsSignIn(!isSignIn);
+  };
+
   return (
     <div className="relative min-h-screen">
   <img 
@@ -29,9 +35,16 @@ const Login = () => {
 
   <div className="absolute inset-0 flex justify-center items-center z-10">
     <div className="bg-opacity-200 p-10 rounded-md w-full max-w-md">
-      <h2 className="text-3xl font-bold mb-6 text-white">Sign In</h2>
+      <h2 className="text-3xl font-bold mb-6 text-white">{isSignIn ? "Sign In" : "Sign Up"}</h2>
       
       <form onSubmit = {(e) => e.preventDefault()} className="flex flex-col space-y-4">
+        {!isSignIn && (
+          <input 
+            type="text" 
+            placeholder="Full Name" 
+            className="p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600" 
+          />
+        )}
         <input 
           ref = {email}
           type="email" 
@@ -51,7 +64,7 @@ const Login = () => {
           className="bg-red-600 hover:bg-red-700 transition text-white font-semibold py-3 rounded"
           onClick={handlesigninbutton}
           >
-          Sign In
+          {isSignIn ? "Sign In" : "Sign Up"}
         </button>
         
         <div className="flex justify-between items-center text-sm text-gray-400 mt-2">
@@ -64,7 +77,7 @@ const Login = () => {
       </form>
 
       <div className="mt-6 text-gray-400 text-sm">
-        <p>New to Netflix? <a href="#" className="text-white hover:underline">Sign up now</a></p>
+        <p className ="text-white hover:underline" onClick = {handleSignUp}>{isSignIn ? "New to MoviesGPT? Sign up now" : "Already have an account? Sign in now"}</p>
       </div>
     </div>
   </div>
