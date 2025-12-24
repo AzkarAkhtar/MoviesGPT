@@ -97,7 +97,7 @@ const Login = () => {
             <p className="text-red-500">{error}</p>
 
             <button
-              type="button"   // ✅ prevent unwanted form submit
+              type="button"
               className="bg-red-600 hover:bg-green-700 transition text-white font-semibold py-3 rounded cursor-pointer"
               onClick={handlesigninbutton}
             >
