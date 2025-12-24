@@ -1,11 +1,8 @@
-import Header from "./Header";
-import Login from "./Login"
-
+import { Outlet } from "react-router-dom";
 const Body = () => {
   return (
     <div>
-    {/* <Header /> */}
-    <Login />
+    <Outlet />
     </div>
   )
 }
