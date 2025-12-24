@@ -19,8 +19,7 @@ const Header = () => {
           addUser({
             uid: uid,
             email: email,
-            displayName: displayName,
-            photoURL: photoURL,
+            displayName: displayName
           })
         );
         navigate("/browse");

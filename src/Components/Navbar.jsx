@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Header from "./Header";
 import { auth } from "../Utils/Firebase";
-import { signOut } from "firebase/auth"; 
-import { useNavigate } from "react-router-dom"; 
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
+  const user = useSelector((store) => store.user);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -15,8 +18,12 @@ function Navbar() {
       })
       .catch((error) => {
         console.error("Sign out error:", error);
+        navigate("/error");
       });
   };
+
+  const displayName = user?.displayName || "GPT";
+  console.log("Navbar Rendered - User:", user);
 
   return (
     <nav className="flex items-center justify-between bg-black px-6 py-2">
@@ -40,7 +47,7 @@ function Navbar() {
             className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
-            U
+            {displayName.charAt(0).toUpperCase()}
           </div>
 
           {isOpen && (

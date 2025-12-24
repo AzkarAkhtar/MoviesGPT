@@ -1,12 +1,15 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import Validation from "../Utils/Validation";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../Utils/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../Utils/userSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -26,10 +29,25 @@ const Login = () => {
     if (!isSignIn) {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
-          console.log("User signed up:", userCredential.user);
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value
+          })
+            .then(() => {
+              const { uid, email, displayName} = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
-          const errorCode = error.code;
          const errorMessage = error.message;
           setError(errorMessage);
         });
