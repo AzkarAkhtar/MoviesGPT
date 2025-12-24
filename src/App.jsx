@@ -4,7 +4,6 @@ import appStore from "./Utils/appStore"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./Components/Login"
 import Browse from "./Components/Browse"
-import Home from "./Components/Home"
 
 function App() {
 
@@ -15,7 +14,7 @@ function App() {
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Body />}>
-            <Route index element={<Home />} />
+            <Route index element={<Login />} />
             <Route path="login" element={<Login />} />
             <Route path="browse" element={<Browse />} />
           </Route>

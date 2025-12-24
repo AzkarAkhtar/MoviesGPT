@@ -67,7 +67,7 @@ const Login = () => {
       </div>
 
       <div className="absolute inset-0 flex justify-center items-center z-10">
-        <div className="bg-black bg-opacity-70 p-10 rounded-md w-full max-w-md"> {/* ✅ fixed */}
+        <div className="bg-black bg-opacity-70 p-10 rounded-md w-full max-w-md">
           <h2 className="text-3xl font-bold mb-6 text-white">
             {isSignIn ? "Sign In" : "Sign Up"}
           </h2>
