@@ -27,20 +27,8 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between bg-gradient-to-b from-black via-black/80 to-transparent px-6 py-4">
   <Header />
-
-  <ul className="hidden md:flex space-x-6 text-white font-medium">
-    <li className="cursor-pointer hover:text-gray-300 transition">Home</li>
-    <li className="cursor-pointer hover:text-gray-300 transition">TV Shows</li>
-    <li className="cursor-pointer hover:text-gray-300 transition">Movies</li>
-    <li className="cursor-pointer hover:text-gray-300 transition">New & Popular</li>
-    <li className="cursor-pointer hover:text-gray-300 transition">My List</li>
-  </ul>
-
+  
   <div className="flex items-center space-x-4 text-white relative">
-    <button className="hover:text-gray-300 transition">Search</button>
-    <button className="hover:text-gray-300 transition">Kids</button>
-    <button className="hover:text-gray-300 transition">Notifications</button>
-
     <div className="relative">
       <div
         className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center cursor-pointer font-bold"

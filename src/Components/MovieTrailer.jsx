@@ -10,17 +10,16 @@ const MovieTrailer = ({ movieId }) => {
       API_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
-
+    
     const trailer = json.results.filter((video) => video.type === "Trailer");
     setFilterData(trailer[0]?.key);
   };
 
   useEffect(() => {
     getMovieTrailer();
-  }, [movieId]); // re-run if movieId changes
+  }, [movieId]);
 
-  if (!filterData) return null; // avoid rendering iframe until data is ready
+  if (!filterData) return null;
 
   return (
     <div className="w-screen">
