@@ -1,31 +1,17 @@
-import { useEffect } from 'react';
-import { API_OPTIONS } from '../Utils/Constants';
-import { NOW_PLAYING_URL } from '../Utils/Constants';
-import { useDispatch } from 'react-redux';
-import { addNowPlayingMovies } from '../Utils/MoviesSlice';
+import useNowPlayingMovies from '../Custom Hooks/useNowPlayingMovies';  
+import MainMovie from './MainMovie';
 import Navbar from './Navbar'
 
 const Browse = () => {
 
-  const dispatch = useDispatch();
-const nowPlayingFetch = async () =>{
-  const data = await fetch(NOW_PLAYING_URL, API_OPTIONS)
-  const json = await data.json();
-  console.log(json.results);
-  dispatch(addNowPlayingMovies(json.results));
-
-}
-useEffect(() => {
-  nowPlayingFetch();
-}, []);
-
+  useNowPlayingMovies();
 
   return (
     <div>
       <Navbar />
-        <h1>Browse</h1>
+        <MainMovie />
     </div>
   )
 }
 
-export default Browse
+export default Browse;
