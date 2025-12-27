@@ -8,3 +8,6 @@ export const API_OPTIONS = {
 export const NOW_PLAYING_URL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
 
 export const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+export const GUEST_EMAIL = "test@gmail.com";
+export const GUEST_PASSWORD = "Test@123";

@@ -25,7 +25,7 @@ const Header = () => {
         navigate("/browse");
       } else {
         dispatch(clearUser());
-        navigate("/");
+        navigate("/login");
       }
     });
     return () => unsubscribe();

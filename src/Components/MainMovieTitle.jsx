@@ -6,10 +6,7 @@ const MainMovieTitle = ({ title, overview }) => {
       <p className="hidden md:inline-block py-6 text-lg w-1/4">{overview}</p>
       <div className="my-4 md:m-0">
         <button className=" bg-black text-white py-1 md:py-4 px-3 md:px-12 text-xl  rounded-lg hover:bg-white hover:text-black transition">
-          Play
-        </button>
-        <button className="hidden md:inline-block mx-2  bg-black text-white p-4 px-12 text-xl bg-opacity-50 rounded-lg hover:bg-white hover:text-black transition">
-          More Info
+          Play(Dummy button cannot play)
         </button>
       </div>
     </div>

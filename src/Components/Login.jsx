@@ -6,6 +6,7 @@ import { auth } from "../Utils/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../Utils/userSlice";
+import { GUEST_EMAIL, GUEST_PASSWORD } from "../Utils/Constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,6 +16,20 @@ const Login = () => {
   const name = useRef(null);
   const [error, setError] = useState(null);
   const [isSignIn, setIsSignIn] = useState(true);
+
+  const handleGuestLogin = () => {
+  signInWithEmailAndPassword(auth, GUEST_EMAIL, GUEST_PASSWORD)
+      .then((userCredential) => {
+  
+        const user = userCredential.user;
+        navigate("/browse");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+      });
+};
 
   const handlesigninbutton = () => {
     const message = Validation(
@@ -58,7 +73,6 @@ const Login = () => {
       .then((userCredential) => {
   
         const user = userCredential.user;
-        console.log("User signed in:", user);
         navigate("/browse");
       })
       .catch((error) => {
@@ -122,13 +136,6 @@ const Login = () => {
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
 
-            <div className="flex justify-between items-center text-sm text-gray-400 mt-2">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" className="accent-red-600" />
-                <span>Remember me</span>
-              </label>
-              <a href="#" className="hover:underline">Need help?</a>
-            </div>
           </form>
 
           <div className="mt-6 text-gray-400 text-sm">
@@ -138,6 +145,14 @@ const Login = () => {
             >
               {isSignIn ? "New to MoviesGPT? Sign up now" : "Already have an account? Sign in now"}
             </p>
+
+            <button
+                  type="button"
+                  className="mt-4 bg-red-600 hover:bg-green-500 transition-colors duration-300 text-white font-bold py-2 px-6 rounded cursor-pointer"
+                  onClick={handleGuestLogin}
+                >
+                  Continue as Guest
+                </button>
           </div>
         </div>
       </div>

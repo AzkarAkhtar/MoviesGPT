@@ -22,13 +22,14 @@ const MovieTrailer = ({ movieId }) => {
   if (!filterData) return null;
 
   return (
-    <div className="w-screen">
+     <div className="w-full aspect-video">
       <iframe
-        className="w-screen aspect-video"
-        src={`https://www.youtube.com/embed/${filterData}?&autoplay=1&mute=1`}
+        className="w-full h-full border-0"
+        src={`https://www.youtube.com/embed/${filterData}?autoplay=1&mute=1&controls=1`}
         title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      ></iframe>
+        allow="autoplay; encrypted-media"
+        allowFullScreen
+      />
     </div>
   );
 };
